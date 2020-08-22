@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: mintcream;
+}
+
+h1 {
+  text-align: center;
+  margin: 5%;
+}
+
+@media only screen and (max-width: 770px) {
+  .container {
+    margin: 0 10%;
+  }
+}

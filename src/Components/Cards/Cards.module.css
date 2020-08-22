@@ -1,0 +1,31 @@
+.container {
+  margin: 0;
+  text-align: center;
+  background-color: azure;
+}
+
+.card {
+  margin: 2% !important;
+}
+
+.infected {
+  border-bottom: 10px solid orange;
+}
+
+.active {
+  border-bottom: 10px solid yellow;
+}
+
+.recovered {
+  border-bottom: 10px solid springgreen;
+}
+
+.deaths {
+  border-bottom: 10px solid red;
+}
+
+@media only screen and (max-width: 770px) {
+  .card {
+    margin: 2% 0 !important;
+  }
+}
