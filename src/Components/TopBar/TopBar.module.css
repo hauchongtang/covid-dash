@@ -1,0 +1,14 @@
+root {
+    flex-grow: 1;
+    background-color: aquamarine;
+}
+menuButton {
+  margin-right: 2px;
+}
+title {
+  flex-grow: 1;
+}
+
+button {
+  float: right;
+}
