@@ -28,6 +28,9 @@ const TopBar = () => {
           <Button href='https://github.com/thchong-code/covid-dash' color='inherit'>
             Github
           </Button>
+          <Button href='https://thchong-code.github.io/portfolio-webpage/#/' color='inherit'>
+            My Website
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
