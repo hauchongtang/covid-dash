@@ -1,22 +1,34 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Button, MenuIcon } from '@material-ui/core'
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core'
 
 import styles from './TopBar.module.css';
 
 const TopBar = () => {
-  const handleClick = () => {
-    window.location.href = "https://thchong-code.github.io/covid-dash/";
-  }
   return (
     <div className={styles.root}>
       <AppBar position="static" style={{ background: '#639ACE' }}>
         <Toolbar variant='dense'>
-          <Typography variant="h6" className={styles.title}>
-            COVID-19-DASH
-        </Typography>
-          <Button onClick={handleClick} className={styles.button} color="inherit">🔄</Button>
+          <Button href='#/' className={styles.button} color="inherit">
+            <Typography variant="h6" className={styles.title}>
+              COVID-19-DASH
+            </Typography>
+          </Button>
+          <Button href=' #/' color='inherit'>
+            World
+          </Button>
+          <Button href='#/singapore' color='inherit'>
+            Singapore
+          </Button>
+          <Button href='#/summary' color='inherit'>
+            Summary
+          </Button>
+          <Button href='#/news' color='inherit'>
+            News
+          </Button>
+          <Button href='https://github.com/thchong-code/covid-dash' color='inherit'>
+            Github
+          </Button>
         </Toolbar>
-
       </AppBar>
     </div>
   )

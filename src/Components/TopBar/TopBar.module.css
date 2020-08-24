@@ -1,6 +1,6 @@
 root {
     flex-grow: 1;
-    background-color: aquamarine;
+    background-color: gainsboro;
 }
 menuButton {
   margin-right: 2px;
@@ -9,6 +9,6 @@ title {
   flex-grow: 1;
 }
 
-button {
+.button {
   float: right;
 }

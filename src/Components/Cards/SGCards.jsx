@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Grid, Card, CardContent, Typography } from '@material-ui/core';
 import CountUp from 'react-countup';
 import cx from 'classnames';
 
 import styles from './Cards.module.css';
+import { fetchCurrentData } from '../../api-handler';
 
-const Cards = ({ data, date }) => {
-  const totalInfected = data.TotalConfirmed;
-  const totalRecovered = data.TotalRecovered;
-  const totalDeaths = data.TotalDeaths;
-  const totalActive = totalInfected - totalDeaths - totalRecovered;
-  const lastUpdated = new Date(date).toDateString();
+const SGCards = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getAPI = async () => {
+      const sgData = await fetchCurrentData();
+      setData(sgData);
+    }
+    getAPI()
+  }, []);
+  const totalInfected = data.infected;
+  const totalRecovered = data.recovered;
+  const totalDeaths = data.deaths;
+  const totalActive = data.active;
+  const lastUpdated = new Date().toDateString();
 
   if (!totalInfected) {
     return 'Loading...';
@@ -63,4 +72,4 @@ const Cards = ({ data, date }) => {
   )
 }
 
-export default Cards;
+export default SGCards;

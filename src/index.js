@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { HashRouter } from 'react-router-dom'
+
+import Routes from './Route';
 
 ReactDOM.render(
-  <App />,
+  <HashRouter basename='/covid-dash/'>
+    <Routes />
+  </HashRouter>,
   document.getElementById('root')
 );

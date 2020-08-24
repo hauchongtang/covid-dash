@@ -61,3 +61,26 @@ export const fetchCurrentData = async () => {
     console.log(error);
   }
 }
+
+export const fetchSummaryData = async () => {
+  try {
+    const url = 'https://api.covid19api.com/summary';
+    const response = await axios.get(url);
+    const dataSet = response.data;
+    const countriesData = dataSet.Countries;
+    return countriesData;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const fetchTopNews = async () => {
+  try {
+    const url = 'https://api.coronatracker.com/news/trending';
+    const response = await axios.get(url);
+    const dataSet = response.data.items;
+    return dataSet;
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -1,10 +1,9 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+
 import styles from './App.module.css';
 import Cards from './Components/Cards/Cards';
 import Charts from './Components/Charts/Charts';
 import TopBar from './Components/TopBar/TopBar';
-// import Country from './Components/Country/Country';
 
 import { fetchData } from './api-handler/index';
 
@@ -23,16 +22,6 @@ class App extends React.Component {
     this.setState({ date: fetchedData.Date });
   }
 
-  // handleCountryChange = async (country) => {
-  //   if (!country) {
-  //     await fetchDailyData();
-  //   } else {
-  //     await fetchDailyData(country);
-  //   }
-  //   console.log(country)
-  //   this.setState({ country: country });
-  // }
-
   render() {
 
     const { data } = this.state;
@@ -44,12 +33,9 @@ class App extends React.Component {
         <TopBar />
         <div className={styles.container}>
           <Cards data={data} date={date} />
-          {/* <Country handleCountryChange={this.handleCountryChange} /> */}
-          <Charts country={country} />
         </div>
         <div className={styles.container}>
-          <Typography variant='h6' align='center'>Made with React and chart.js</Typography>
-          <Typography variant='h6' align='center'><a href='https://github.com/thchong-code/covid-dash'>GitHub</a>&nbsp;&nbsp;<a href='https://thchong-code.github.io/portfolio-webpage/'>Website</a></Typography>
+          <Charts country={country} />
         </div>
       </>
     )
