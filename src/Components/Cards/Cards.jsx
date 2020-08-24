@@ -6,11 +6,12 @@ import cx from 'classnames';
 import styles from './Cards.module.css';
 
 const Cards = ({ data, date }) => {
-  const totalInfected = data.TotalConfirmed;
-  const totalRecovered = data.TotalRecovered;
-  const totalDeaths = data.TotalDeaths;
+  const totalInfected = parseInt(data.TotalConfirmed);
+  const totalRecovered = parseInt(data.TotalRecovered);
+  const totalDeaths = parseInt(data.TotalDeaths);
   const totalActive = totalInfected - totalDeaths - totalRecovered;
   const lastUpdated = new Date(date).toDateString();
+
 
   if (!totalInfected) {
     return 'Loading...';
@@ -22,7 +23,7 @@ const Cards = ({ data, date }) => {
           <CardContent>
             <Typography color='textSecondary' gutterBottom>Confirmed</Typography>
             <Typography variant='h5'>
-              <CountUp start={0} end={totalInfected} duration={2.5} seperator="," />
+              <CountUp start={0} end={totalInfected} duration={2.5} separator="," />
             </Typography>
             <Typography color='textSecondary'>{lastUpdated}</Typography>
             <Typography variant='body2'>Number of infections</Typography>
@@ -32,7 +33,7 @@ const Cards = ({ data, date }) => {
           <CardContent>
             <Typography color='textSecondary' gutterBottom>Active</Typography>
             <Typography variant='h5'>
-              <CountUp start={0} end={totalActive} duration={2.5} seperator="," />
+              <CountUp start={0} end={totalActive} duration={2.5} separator="," />
             </Typography>
             <Typography color='textSecondary'>{lastUpdated}</Typography>
             <Typography variant='body2'>Number of active cases</Typography>
@@ -42,7 +43,7 @@ const Cards = ({ data, date }) => {
           <CardContent>
             <Typography color='textSecondary' gutterBottom>Recovered</Typography>
             <Typography variant='h5'>
-              <CountUp start={0} end={totalRecovered} duration={2.5} seperator="," />
+              <CountUp start={0} end={totalRecovered} duration={2.5} separator="," />
             </Typography>
             <Typography color='textSecondary'>{lastUpdated}</Typography>
             <Typography variant='body2'>Number of recoveries</Typography>
@@ -52,7 +53,7 @@ const Cards = ({ data, date }) => {
           <CardContent>
             <Typography color='textSecondary' gutterBottom>Deaths</Typography>
             <Typography variant='h5'>
-              <CountUp start={0} end={totalDeaths} duration={2.5} seperator="," />
+              <CountUp start={0} end={totalDeaths} duration={2.5} separator="," />
             </Typography>
             <Typography color='textSecondary'>{lastUpdated}</Typography>
             <Typography variant='body2'>Number of fatalities</Typography>
