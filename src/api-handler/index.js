@@ -29,9 +29,9 @@ export const fetchDailyData = async (country) => {
 
 export const fetchWorldDailyData = async () => {
   try {
-    const url = 'https://covid19.mathdro.id/api/daily';
-    const response = await axios.get(url)
-    return response.data;
+    const url = 'https://covid19-api.org/api/timeline';
+    const response = await axios.get(url);
+    return response.data.reverse();
   } catch (error) {
     console.log(error);
   }
@@ -80,6 +80,16 @@ export const fetchTopNews = async () => {
     const response = await axios.get(url);
     const dataSet = response.data.items;
     return dataSet;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const fetchTopDaily = async () => {
+  try {
+    const url = 'http://api.coronatracker.com/v3/analytics/dailyNewStats?limit=10';
+    const response = await axios.get(url);
+    return response.data;
   } catch (error) {
     console.log(error);
   }
