@@ -1,7 +1,9 @@
-import React from 'react'
-import { Grid, Card, CardContent, Typography } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { Grid, Card, CardContent, Typography, Paper } from '@material-ui/core';
 import CountUp from 'react-countup';
 import cx from 'classnames';
+
+import { fetchTopDaily } from '../../api-handler/index';
 
 import styles from './Cards.module.css';
 
@@ -12,6 +14,15 @@ const Cards = ({ data, date }) => {
   const totalActive = totalInfected - totalDeaths - totalRecovered;
   const lastUpdated = new Date(date).toDateString();
 
+  const [topData, setTopData] = useState([]);
+
+  useEffect(() => {
+    const fetchAPI = async () => {
+      const fetchedData = await fetchTopDaily();
+      setTopData(fetchedData);
+    }
+    fetchAPI();
+  }, []);
 
   if (!totalInfected) {
     return 'Loading...';
@@ -60,6 +71,17 @@ const Cards = ({ data, date }) => {
           </CardContent>
         </Grid>
       </Grid>
+      <Paper elevation={1} className={styles.root}>
+        <Typography variant='h5' color='textSecondary' gutterBottom>Top 10 Daily Figures 📈 (Updated live)</Typography>
+        {topData.map((item, index) => {
+          return (
+            <>
+              <Typography variant='h6'>{index + 1}.&nbsp;{item.country}</Typography>
+              <Typography color='primary'>Cases:&nbsp;{item.daily_cases}&nbsp;Deaths:&nbsp;{item.daily_deaths}</Typography>
+            </>
+          )
+        })}
+      </Paper>
     </div>
   )
 }

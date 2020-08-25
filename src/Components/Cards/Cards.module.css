@@ -8,6 +8,18 @@
   margin-bottom: 0% !important;
 }
 
+.root {
+  padding: 2% !important;
+  margin: 10% !important;
+  margin-top: 4% !important;
+  margin-bottom: 2% !important;
+  text-align: justify;
+}
+
+.topcard {
+  margin: 2% !important;
+}
+
 .infected {
   border-bottom: 10px solid orange;
 }
