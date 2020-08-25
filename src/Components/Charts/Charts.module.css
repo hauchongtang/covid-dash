@@ -14,9 +14,3 @@
   margin-right: 2% !important; */
   margin-top: 2% !important;
 }
-
-@media only screen and (max-width: 770px) {
-  .container {
-    width: 85%;
-  }
-}
