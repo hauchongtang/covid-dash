@@ -84,3 +84,13 @@ export const fetchTopNews = async () => {
     console.log(error);
   }
 }
+
+export const fetchTopDaily = async () => {
+  try {
+    const url = 'http://api.coronatracker.com/v3/analytics/dailyNewStats?limit=10';
+    const response = await axios.get(url);
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+}
