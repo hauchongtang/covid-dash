@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Card, CardContent, Typography, Paper } from '@material-ui/core';
-import { borderRadius } from '@material-ui/system';
+import {
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  Paper,
+  TableContainer,
+  Table,
+  TableBody,
+  TableHead,
+  TableRow,
+  TableCell,
+  LinearProgress
+} from '@material-ui/core';
+import { HorizontalBar } from 'react-chartjs-2';
 import { makeStyles } from "@material-ui/core/styles";
 import CountUp from 'react-countup';
 import cx from 'classnames';
@@ -9,32 +22,48 @@ import { fetchTopDaily } from '../../api-handler/index';
 
 const useStyles = makeStyles({
   container: {
-    margin: 0,
     textAlign: 'center',
+    width: '50% !important'
   },
   card: {
     margin: '2% !important',
-    marginBottom: '0% !important',
+    borderRadius: '12px',
   },
   root: {
-    padding: '2% !important',
-    margin: '10% !important',
-    marginTop: '4% !important',
-    marginBottom: '2% !important',
+    margin: '2% !important',
+    padding: '2%',
     textAlign: 'justify',
+    width: '76%',
+    marginLeft: '10% !important',
+    marginTop: '0% !important',
+    marginBottom: '0% !important',
+    borderRadius: '12px',
+    backgroundColor: 'rgb(138,43,226, 0.1)'
   },
   infected: {
-    borderBottom: '10px solid orange',
+    borderBottom: '20px solid orange',
+    color: 'orange',
+    backgroundColor: 'rgba(255,165,0, 0.1)',
   },
   active: {
-    borderBottom: '10px solid yellow',
+    borderBottom: '20px solid turquoise',
+    color: '#40E0D0',
+    backgroundColor: 'rgb(64,224,208, 0.1)'
   },
   recovered: {
-    borderBottom: '10px solid springgreen',
+    borderBottom: '20px solid springgreen',
+    color: 'green',
+    backgroundColor: 'rgb(0,128,0, 0.1)'
   },
   deaths: {
-    borderBottom: '10px solid red',
-  }
+    borderBottom: '20px solid red',
+    color: 'red',
+    backgroundColor: 'rgb(255, 0, 0, 0.1)'
+  },
+  tables: {
+    maxHeight: '240px',
+    width: '100% !important',
+  },
 });
 
 const Cards = ({ data, date }) => {
@@ -47,6 +76,11 @@ const Cards = ({ data, date }) => {
   const styles = useStyles();
 
   const [topData, setTopData] = useState([]);
+  const columns = [
+    { id: "country", label: "Country" },
+    { id: "daily_cases", label: "Newly Confirmed" },
+    { id: "daily_deaths", label: "New Deaths" },
+  ];
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -56,65 +90,123 @@ const Cards = ({ data, date }) => {
     fetchAPI();
   }, []);
 
+  const topDailyBar = (
+    topData ? (
+      <HorizontalBar
+        data={{
+          labels: topData.map(items => items.country),
+          datasets: [
+            {
+              label: 'New Cases',
+              backgroundColor: 'rgba(0,255,127, 0.5)',
+              data: topData.map(items => items.daily_cases),
+            },
+            {
+              label: 'Deaths',
+              backgroundColor: 'rgba(0, 0, 225, 0.5)',
+              data: topData.map(items => items.daily_deaths),
+            }
+          ],
+        }}
+        options={{
+          legend: { display: true },
+          scales: {
+            xAxes: [{
+              stacked: true,
+            }],
+            yAxes: [{
+              stacked: true
+            }]
+          }
+        }}
+      />
+    ) : <LinearProgress />
+  )
+
   if (!totalInfected) {
-    return 'Loading...';
+    return (
+      <LinearProgress />
+    );
   }
   return (
-    <div className={styles.container}>
+    <div >
       <Grid container spacing={3} justify='center' borderRadius={16}>
         <Grid item component={Card} xs={12} md={2} className={cx(styles.card, styles.infected)}>
-          <CardContent >
-            <Typography color='textSecondary' gutterBottom>Confirmed</Typography>
+          <CardContent>
+            <Typography gutterBottom>Confirmed</Typography>
             <Typography variant='h5'>
               <CountUp start={0} end={totalInfected} duration={2.5} separator="," />
             </Typography>
-            <Typography color='textSecondary'>{lastUpdated}</Typography>
-            <Typography variant='body2'>Number of infections</Typography>
-          </CardContent>
-        </Grid>
-        <Grid item component={Card} xs={12} md={2} className={cx(styles.card, styles.active)}>
-          <CardContent>
-            <Typography color='textSecondary' gutterBottom>Active</Typography>
-            <Typography variant='h5'>
-              <CountUp start={0} end={totalActive} duration={2.5} separator="," />
-            </Typography>
-            <Typography color='textSecondary'>{lastUpdated}</Typography>
-            <Typography variant='body2'>Number of active cases</Typography>
           </CardContent>
         </Grid>
         <Grid item component={Card} xs={12} md={2} className={cx(styles.card, styles.recovered)}>
           <CardContent>
-            <Typography color='textSecondary' gutterBottom>Recovered</Typography>
+            <Typography gutterBottom>Recovered</Typography>
             <Typography variant='h5'>
               <CountUp start={0} end={totalRecovered} duration={2.5} separator="," />
             </Typography>
-            <Typography color='textSecondary'>{lastUpdated}</Typography>
-            <Typography variant='body2'>Number of recoveries</Typography>
+          </CardContent>
+        </Grid>
+        <Grid item component={Card} xs={12} md={2} className={cx(styles.card, styles.active)}>
+          <CardContent>
+            <Typography gutterBottom>Active</Typography>
+            <Typography variant='h5'>
+              <CountUp start={0} end={totalActive} duration={2.5} separator="," />
+            </Typography>
           </CardContent>
         </Grid>
         <Grid item component={Card} xs={12} md={2} className={cx(styles.card, styles.deaths)}>
           <CardContent>
-            <Typography color='textSecondary' gutterBottom>Deaths</Typography>
+            <Typography gutterBottom>Deaths</Typography>
             <Typography variant='h5'>
               <CountUp start={0} end={totalDeaths} duration={2.5} separator="," />
             </Typography>
-            <Typography color='textSecondary'>{lastUpdated}</Typography>
-            <Typography variant='body2'>Number of fatalities</Typography>
           </CardContent>
         </Grid>
       </Grid>
-      <Paper borderRadius={32} elevation={1} className={styles.root}>
-        <Typography variant='h5' color='textSecondary' gutterBottom>Top 10 Daily Figures 📈 (Updated live)</Typography>
-        {topData.map((item, index) => {
-          return (
-            <>
-              <Typography variant='h6'>{index + 1}.&nbsp;{item.country}</Typography>
-              <Typography color='primary'>Cases:&nbsp;{item.daily_cases}&nbsp;Deaths:&nbsp;{item.daily_deaths}</Typography>
-            </>
-          )
-        })}
+      <Paper elevation={0} className={styles.root}>
+        <Typography variant='h5' color='textSecondary' gutterBottom style={{ textAlign: 'center' }}>Top 10 Daily Figures 📈 (Updated live)</Typography>
+        <Grid container spacing={3} justify='center'>
+          <Grid item>
+            <TableContainer className={styles.tables}>
+              <Table stickyHeader aria-label="sticky table">
+                <TableHead>
+                  <TableRow>
+                    {columns.map((column) => (
+                      <TableCell key={column.id}>{column.label}</TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {topData.map((row) => {
+                    return (
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={row.country}
+                      >
+                        {columns.map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell key={column.id}>{value}</TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
+          <div className={styles.container}>
+            <Grid item>
+              {topDailyBar}
+            </Grid>
+          </div>
+        </Grid>
       </Paper>
-    </div>
+    </div >
   )
 }
 

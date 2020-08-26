@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Card, CardContent, Typography, Link } from '@material-ui/core';
+import { Grid, Card, CardContent, Typography, Link, LinearProgress } from '@material-ui/core';
 import { countries } from 'country-data';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -9,10 +9,14 @@ import { fetchTopNews } from '../../api-handler/index';
 const useStyles = makeStyles({
   container: {
     textAlign: 'justify',
-    justifyContent: 'center',
   },
   card: {
     margin: '2% !important',
+    backgroundColor: 'rgb(64,224,208, 0.1)',
+    borderRadius: '12px',
+    borderTop: '12px solid rgb(64,224,208)',
+    width: '80%',
+    textAlign: 'justify'
   },
 })
 
@@ -29,9 +33,15 @@ const News = () => {
     fetchAPI();
   }, []);
 
+  if (!data) {
+    return (
+      <LinearProgress />
+    )
+  }
+
   const mapNews = data.map((items, index) => {
     return (
-      <div className={styles.container}>
+      <div>
         <CardContent className={styles.card}>
           <Typography variant='h6' color='textPrimary' gutterBotton>{countries[items.countryCode].name}</Typography>
           <Typography variant='h6' color='primary' gutterBottom>{items.title}</Typography>
@@ -49,13 +59,11 @@ const News = () => {
   return (
     <>
       <TopBar />
-      <div className={styles.container}>
-        <Grid spacing={3} align='center'>
-          <Grid item component={Card}>
-            {mapNews}
-          </Grid>
+      <Grid container spacing={0} align='center'>
+        <Grid item component={Card}>
+          {mapNews}
         </Grid>
-      </div>
+      </Grid>
     </>
   )
 }

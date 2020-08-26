@@ -14,11 +14,20 @@ const useStyles = makeStyles({
     textAlign: 'center',
     width: '100%',
     marginLeft: '10%',
+    marginTop: '0% !important',
   },
   card: {
     width: '80%',
     marginTop: '2% !important',
+    borderRadius: '12px',
+    backgroundColor: 'rgb(0, 0, 225, 0.1)'
   },
+  card1: {
+    width: '80%',
+    marginTop: '1% !important',
+    borderRadius: '12px',
+    backgroundColor: 'rgb(225, 0, 0, 0.1)'
+  }
 })
 
 const Singapore = () => {
@@ -107,7 +116,7 @@ const Singapore = () => {
               {sgLineGraph}
             </CardContent>
           </Grid>
-          <Grid item component={Card} className={styles.card}>
+          <Grid item component={Card} className={styles.card1}>
             <CardContent>
               <Typography variant='h5' align='center'>Singapore Summary 🇸🇬</Typography>
               {sgBarGraph}
