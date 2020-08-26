@@ -2,9 +2,39 @@ import React, { useEffect, useState } from 'react'
 import { Grid, Card, CardContent, Typography } from '@material-ui/core';
 import CountUp from 'react-countup';
 import cx from 'classnames';
+import { makeStyles } from "@material-ui/core/styles";
 
-import styles from './Cards.module.css';
 import { fetchCurrentData } from '../../api-handler';
+
+const useStyles = makeStyles({
+  container: {
+    margin: 0,
+    textAlign: 'center',
+  },
+  card: {
+    margin: '2% !important',
+    marginBottom: '0% !important',
+  },
+  root: {
+    padding: '2% !important',
+    margin: '10% !important',
+    marginTop: '4% !important',
+    marginBottom: '2% !important',
+    textAlign: 'justify',
+  },
+  infected: {
+    borderBottom: '10px solid orange',
+  },
+  active: {
+    borderBottom: '10px solid yellow',
+  },
+  recovered: {
+    borderBottom: '10px solid springgreen',
+  },
+  deaths: {
+    borderBottom: '10px solid red',
+  }
+});
 
 const SGCards = () => {
   const [data, setData] = useState([]);
@@ -20,6 +50,8 @@ const SGCards = () => {
   const totalDeaths = data.deaths;
   const totalActive = data.active;
   const lastUpdated = new Date().toDateString();
+
+  const styles = useStyles();
 
   if (!totalInfected) {
     return 'Loading...';

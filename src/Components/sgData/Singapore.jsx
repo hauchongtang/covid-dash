@@ -2,15 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { Line, HorizontalBar } from 'react-chartjs-2';
 import { Typography, CardContent, Card, Grid } from '@material-ui/core';
 import { fetchDailyData, fetchCurrentData } from '../../api-handler/index';
+import { makeStyles } from '@material-ui/core/styles';
 
 import TopBar from '../TopBar/TopBar';
 import SGCards from '../Cards/SGCards';
 
-import styles from './Singapore.module.css';
+const useStyles = makeStyles({
+  container: {
+    display: 'flexbox',
+    justifyContent: 'center',
+    textAlign: 'center',
+    width: '100%',
+    marginLeft: '10%',
+  },
+  card: {
+    width: '80%',
+    marginTop: '2% !important',
+  },
+})
 
 const Singapore = () => {
   const [dailyData, setDailyData] = useState([]);
   const [currentData, setCurrentData] = useState({});
+
+  const styles = useStyles();
 
   useEffect(() => {
     const fetchData = async () => {

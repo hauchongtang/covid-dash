@@ -1,12 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Typography, Card, Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
 import { fetchWorldDailyData } from '../../api-handler/index';
 
-import styles from './Charts.module.css';
+const useStyles = makeStyles({
+  container: {
+    display: 'flexbox',
+    textAlign: 'center',
+    width: '100%',
+    justifyItems: 'center',
+    marginLeft: '10%',
+  },
+  card: {
+    float: 'none',
+    width: '80%',
+    marginTop: '2% !important',
+  },
+})
 
 const Charts = () => {
   const [worldDailyData, setWorldData] = useState([]);
+
+  const styles = useStyles();
 
   useEffect(() => {
     const fetchData = async () => {

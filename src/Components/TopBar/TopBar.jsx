@@ -1,9 +1,25 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button } from '@material-ui/core'
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-import styles from './TopBar.module.css';
+const useStyles = makeStyles({
+  root: {
+    flexGrow: '1',
+    backgroundColor: 'gainsboro',
+  },
+  menuButton: {
+    marginRight: '2px',
+  },
+  title: {
+    flexGrow: '1',
+  },
+  button: {
+    float: 'right',
+  },
+})
 
 const TopBar = () => {
+  const styles = useStyles();
   return (
     <div className={styles.root}>
       <AppBar position="static" style={{ background: '#639ACE' }}>

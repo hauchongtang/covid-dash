@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Card, CardContent, Typography, Link } from '@material-ui/core';
 import { countries } from 'country-data';
+import { makeStyles } from '@material-ui/core/styles';
 
 import TopBar from '../TopBar/TopBar';
 import { fetchTopNews } from '../../api-handler/index';
 
-import styles from './News.module.css';
+const useStyles = makeStyles({
+  container: {
+    textAlign: 'justify',
+    justifyContent: 'center',
+  },
+  card: {
+    margin: '2% !important',
+  },
+})
 
 const News = () => {
   const [data, setData] = useState([]);
+
+  const styles = useStyles();
 
   useEffect(() => {
     const fetchAPI = async () => {
