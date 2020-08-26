@@ -1,0 +1,13 @@
+h1 {
+  text-align: center;
+  margin: 5%;
+}
+
+html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+}

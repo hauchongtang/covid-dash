@@ -1,11 +1,11 @@
 import React from 'react';
-
-import styles from './App.module.css';
 import Cards from './Components/Cards/Cards';
 import Charts from './Components/Charts/Charts';
 import TopBar from './Components/TopBar/TopBar';
 
 import { fetchData } from './api-handler/index';
+
+import './App.css';
 
 class App extends React.Component {
 
@@ -30,11 +30,9 @@ class App extends React.Component {
 
     return (
       <>
-        <TopBar />
-        <div className={styles.container}>
+        <div className='container'>
+          <TopBar />
           <Cards data={data} date={date} />
-        </div>
-        <div className={styles.container}>
           <Charts country={country} />
         </div>
       </>

@@ -2,15 +2,39 @@ import React, { useState, useEffect } from 'react';
 import { Line, HorizontalBar } from 'react-chartjs-2';
 import { Typography, CardContent, Card, Grid } from '@material-ui/core';
 import { fetchDailyData, fetchCurrentData } from '../../api-handler/index';
+import { makeStyles } from '@material-ui/core/styles';
 
 import TopBar from '../TopBar/TopBar';
 import SGCards from '../Cards/SGCards';
 
-import styles from './Singapore.module.css';
+const useStyles = makeStyles({
+  container: {
+    display: 'flexbox',
+    justifyContent: 'center',
+    textAlign: 'center',
+    width: '100%',
+    marginLeft: '10%',
+    marginTop: '0% !important',
+  },
+  card: {
+    width: '80%',
+    marginTop: '2% !important',
+    borderRadius: '12px',
+    backgroundColor: 'rgb(0, 0, 225, 0.1)'
+  },
+  card1: {
+    width: '80%',
+    marginTop: '1% !important',
+    borderRadius: '12px',
+    backgroundColor: 'rgb(225, 0, 0, 0.1)'
+  }
+})
 
 const Singapore = () => {
   const [dailyData, setDailyData] = useState([]);
   const [currentData, setCurrentData] = useState({});
+
+  const styles = useStyles();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,7 +116,7 @@ const Singapore = () => {
               {sgLineGraph}
             </CardContent>
           </Grid>
-          <Grid item component={Card} className={styles.card}>
+          <Grid item component={Card} className={styles.card1}>
             <CardContent>
               <Typography variant='h5' align='center'>Singapore Summary 🇸🇬</Typography>
               {sgBarGraph}
