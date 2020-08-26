@@ -71,7 +71,6 @@ const Cards = ({ data, date }) => {
   const totalRecovered = parseInt(data.TotalRecovered);
   const totalDeaths = parseInt(data.TotalDeaths);
   const totalActive = totalInfected - totalDeaths - totalRecovered;
-  const lastUpdated = new Date(date).toDateString();
 
   const styles = useStyles();
 
@@ -124,9 +123,7 @@ const Cards = ({ data, date }) => {
   )
 
   if (!totalInfected) {
-    return (
-      <LinearProgress />
-    );
+    return null;
   }
   return (
     <div >
@@ -165,7 +162,7 @@ const Cards = ({ data, date }) => {
         </Grid>
       </Grid>
       <Paper elevation={0} className={styles.root}>
-        <Typography variant='h5' color='textSecondary' gutterBottom style={{ textAlign: 'center' }}>Top 10 Daily Figures 📈 (Updated live)</Typography>
+        <Typography variant='h5' color='textSecondary' gutterBottom style={{ textAlign: 'center' }}>Top 10 Daily Figures <span role="img" aria-label="grinning face" id="rise trend">📈</span> (Updated live)</Typography>
         <Grid container spacing={3} justify='center'>
           <Grid item>
             <TableContainer className={styles.tables}>

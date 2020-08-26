@@ -89,7 +89,7 @@ const Charts = () => {
       <div className={styles.container}>
         <Grid alignItems='center' direction='row'>
           <Grid item component={Card} className={styles.card}>
-            <Typography variant='h5' align='center'>World Trend 🌎</Typography>
+            <Typography variant='h5' align='center'><span role="img" aria-label="world" id="earth">🌎</span> Trend </Typography>
             {worldLineGraph}
           </Grid>
         </Grid>

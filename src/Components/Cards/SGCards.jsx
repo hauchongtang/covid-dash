@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, Card, CardContent, Typography, LinearProgress } from '@material-ui/core';
+import { Grid, Card, CardContent, Typography } from '@material-ui/core';
 import CountUp from 'react-countup';
 import cx from 'classnames';
 import { makeStyles } from "@material-ui/core/styles";
@@ -58,14 +58,11 @@ const SGCards = () => {
   const totalRecovered = data.recovered;
   const totalDeaths = data.deaths;
   const totalActive = data.active;
-  const lastUpdated = new Date().toDateString();
 
   const styles = useStyles();
 
   if (!totalInfected) {
-    return (
-      <LinearProgress />
-    );
+    return null;
   }
   return (
     <div className={styles.container}>
