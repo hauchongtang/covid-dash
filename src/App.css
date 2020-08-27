@@ -11,3 +11,7 @@ html, body {
     justify-content: center;
     flex-direction: column;
 }
+
+html {
+  overflow-y: scroll;
+}

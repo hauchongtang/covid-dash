@@ -11,7 +11,8 @@ import {
   TableHead,
   TableRow,
   TableCell,
-  LinearProgress
+  LinearProgress,
+  Button
 } from '@material-ui/core';
 import { HorizontalBar } from 'react-chartjs-2';
 import { makeStyles } from "@material-ui/core/styles";
@@ -38,7 +39,7 @@ const useStyles = makeStyles({
     marginTop: '0% !important',
     marginBottom: '0% !important',
     borderRadius: '12px',
-    backgroundColor: 'rgb(138,43,226, 0.1)'
+    backgroundColor: 'rgb(92, 219, 149, 0.1)'
   },
   infected: {
     borderBottom: '20px solid orange',
@@ -64,6 +65,9 @@ const useStyles = makeStyles({
     maxHeight: '240px',
     width: '100% !important',
   },
+  more: {
+    alignItems: 'center'
+  }
 });
 
 const Cards = ({ data, date }) => {
@@ -201,7 +205,11 @@ const Cards = ({ data, date }) => {
               {topDailyBar}
             </Grid>
           </div>
+          <Grid item>
+            <Typography variant='button' ><Button className={styles.more} href='#/summary'>For more details click here</Button></Typography>
+          </Grid>
         </Grid>
+
       </Paper>
     </div >
   )

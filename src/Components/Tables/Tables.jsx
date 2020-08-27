@@ -24,10 +24,10 @@ const useStyles = makeStyles({
   },
   container: {
     maxHeight: 530,
-    backgroundColor: 'rgb(175,238,238, 0.1)'
+    backgroundColor: 'rgb(92, 219, 149, 0.1)'
   },
   card: {
-    backgroundColor: 'rgb(175,238,238, 0.2)'
+    backgroundColor: 'rgb(92, 219, 149, 0.1)'
   },
 });
 

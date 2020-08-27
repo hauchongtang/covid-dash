@@ -4,15 +4,18 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-    display: 'flex',
+    backgroundColor: 'rgb(92, 219, 149, 0.2)',
+    padding: '0% !important',
+    margin: '0% !important'
   },
 })
 
 const TopBar = () => {
   const styles = useStyles();
+
   return (
     <>
-      <AppBar position='static' color='transparent' elevation={0}>
+      <AppBar position='static' color='transparent' elevation={0} className={styles.root}>
         <Toolbar>
           <Grid
             justify='space-evenly'
@@ -22,39 +25,29 @@ const TopBar = () => {
               <Button href='#/' className={styles.button} color="inherit">
                 <Typography variant='h6'>
                   𝗖𝗢𝗩𝗜𝗗🦠𝗧𝗥𝗔𝗖𝗞𝗘𝗥
-            </Typography>
+                </Typography>
               </Button>
             </Grid>
             <Grid item>
-              <Button size='large' href=' #/' color='inherit'>
-                World
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button size='large' href=' #/singapore' color='inherit'>
+              <Button size='large' href=' #/singapore' color='inherit' className={styles.current}>
                 Singapore
               </Button>
             </Grid>
             <Grid item>
-              <Button size='large' href=' #/summary' color='inherit'>
+              <Button size='large' href=' #/summary' color='inherit' className={styles.current}>
                 Summary
               </Button>
             </Grid>
             <Grid item>
-              <Button size='large' href=' #/news' color='inherit'>
+              <Button size='large' href=' #/news' color='inherit' className={styles.current}>
                 News
               </Button>
             </Grid>
             <Grid item>
-              <Button size='large' href=' https://github.com/thchong-code/covid-dash' color='inherit'>
-                Github
+              <Button size='large' href=' #/about' color='inherit' className={styles.current}>
+                About
               </Button>
-            </Grid >
-            <Grid item>
-              <Button size='large' href=' https://thchong-code.github.io/portfolio-webpage/#/' color='inherit'>
-                Contact
-              </Button>
-            </Grid >
+            </Grid>
           </Grid >
         </Toolbar >
       </AppBar >

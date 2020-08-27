@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Line, HorizontalBar } from 'react-chartjs-2';
-import { Typography, CardContent, Card, Grid } from '@material-ui/core';
-import { fetchDailyData, fetchCurrentData } from '../../api-handler/index';
+import { Line, HorizontalBar, Doughnut } from 'react-chartjs-2';
+import { Typography, Card, Grid, Paper } from '@material-ui/core';
+import { fetchDailyData, fetchCurrentData, fetchSGData } from '../../api-handler/index';
 import { makeStyles } from '@material-ui/core/styles';
 
 import TopBar from '../TopBar/TopBar';
@@ -12,27 +12,52 @@ const useStyles = makeStyles({
     display: 'flexbox',
     justifyContent: 'center',
     textAlign: 'center',
-    width: '100%',
-    marginLeft: '10%',
     marginTop: '0% !important',
   },
-  card: {
+  root: {
     width: '80%',
-    marginTop: '2% !important',
+    marginLeft: '10% !important',
+    marginTop: '2% !important'
+  },
+  root1: {
+    width: '80%',
+    marginLeft: '10% !important',
+    marginTop: '1% !important'
+  },
+  card: {
+    width: '50%',
+    padding: '2% !important',
+    marginTop: '0% !important',
     borderRadius: '12px',
-    backgroundColor: 'rgb(0, 0, 225, 0.1)'
+    backgroundColor: 'rgb(92, 219, 149, 0.1)',
   },
   card1: {
-    width: '80%',
-    marginTop: '1% !important',
+    width: '50%',
+    padding: '2% !important',
+    marginTop: '0% !important',
     borderRadius: '12px',
-    backgroundColor: 'rgb(225, 0, 0, 0.1)'
+    backgroundColor: 'rgb(92, 219, 149, 0.1)',
+  },
+  card2: {
+    width: '50%',
+    padding: '2% !important',
+    marginTop: '0% !important',
+    borderRadius: '12px',
+    backgroundColor: 'rgb(92, 219, 149, 0.1)',
+  },
+  card3: {
+    width: '50%',
+    padding: '2% !important',
+    marginTop: '0% !important',
+    borderRadius: '12px',
+    backgroundColor: 'rgb(92, 219, 149, 0.1)',
   }
 })
 
 const Singapore = () => {
   const [dailyData, setDailyData] = useState([]);
   const [currentData, setCurrentData] = useState({});
+  const [hospitalData, setHospitalData] = useState({});
 
   const styles = useStyles();
 
@@ -40,6 +65,7 @@ const Singapore = () => {
     const fetchData = async () => {
       setDailyData(await fetchDailyData());
       setCurrentData(await fetchCurrentData());
+      setHospitalData(await fetchSGData());
     }
     fetchData();
   }, [])
@@ -77,7 +103,21 @@ const Singapore = () => {
         }}
         options={{
           maintainAspectRatio: true,
-          responsive: true
+          responsive: true,
+          scales: {
+            xAxes: [{
+              type: 'time',
+              ticks: {
+                autoSkip: true,
+                maxTicksLimit: 4
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                maxTicksLimit: 4
+              }
+            }]
+          }
         }} />)
       : null
   )
@@ -102,28 +142,70 @@ const Singapore = () => {
     ) : null
   )
 
+  const hospitalBarGraph = (
+    hospitalData ? (
+      <HorizontalBar
+        data={{
+          labels: ['Community', 'Stable', 'Critical'],
+          datasets: [
+            {
+              label: 'People',
+              backgroundColor: ['rgba(255,165,0, 0.5)', 'rgba(0,255,127, 0.5)', 'rgba(255,255,0, 0.5)'],
+              data: [hospitalData.community, hospitalData.stable, hospitalData.critical]
+            }
+          ]
+        }}
+        options={{
+          legend: { display: false }
+        }}
+      />) : null
+  )
+
+  const activeBreakdown = (
+    hospitalData ? (
+      <Doughnut
+        data={{
+          labels: ['Community', 'Stable', 'Critical'],
+          datasets: [{
+            data: [hospitalData.community, hospitalData.stable, hospitalData.critical],
+            backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+          }],
+
+        }}
+      />
+    ) : null
+  )
+
   return (
     <>
       <TopBar />
       <div className={styles.info}>
         <SGCards />
       </div>
-      <div className={styles.container}>
-        <Grid alignItems='center' direction='row'>
+      <Paper elevation={0} className={styles.root}>
+        <Grid xs={12} container justify='center' direction='row'>
           <Grid item component={Card} className={styles.card}>
-            <CardContent>
-              <Typography variant='h5' align='center'>Singapore Trends 🇸🇬</Typography>
-              {sgLineGraph}
-            </CardContent>
+            <Typography variant='button' align='center'>Trend</Typography>
+            {sgLineGraph}
           </Grid>
           <Grid item component={Card} className={styles.card1}>
-            <CardContent>
-              <Typography variant='h5' align='center'>Singapore Summary 🇸🇬</Typography>
-              {sgBarGraph}
-            </CardContent>
+            <Typography variant='button' align='center'>Summary</Typography>
+            {sgBarGraph}
           </Grid>
         </Grid>
-      </div>
+      </Paper>
+      <Paper elevation={0} className={styles.root1}>
+        <Grid xs={12} container alignItems='center'>
+          <Grid item component={Card} className={styles.card2}>
+            <Typography variant='button' align='center'>Breakdown of Active Cases</Typography>
+            {activeBreakdown}
+          </Grid>
+          <Grid item component={Card} className={styles.card3}>
+            <Typography variant='button' align='center'>{currentData.active} Active Cases in Hospital</Typography>
+            {hospitalBarGraph}
+          </Grid>
+        </Grid>
+      </Paper>
     </>
   )
 }

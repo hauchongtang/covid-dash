@@ -94,3 +94,18 @@ export const fetchTopDaily = async () => {
     console.log(error);
   }
 }
+
+export const fetchSGData = async () => {
+  try {
+    const url = 'https://api.apify.com/v2/key-value-stores/yaPbKe9e5Et61bl7W/records/LATEST?disableRedirect=true';
+    const response = await axios.get(url);
+    const hospitalizedData = {
+      community: response.data.inCommunityFacilites,
+      stable: response.data.stableHospitalized,
+      critical: response.data.criticalHospitalized
+    }
+    return hospitalizedData;
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -26,14 +26,13 @@ class App extends React.Component {
 
     const { data } = this.state;
     const { date } = this.state;
-    const { country } = this.state;
 
     return (
       <>
         <div className='container'>
           <TopBar />
           <Cards data={data} date={date} />
-          <Charts country={country} />
+          <Charts data={data} />
         </div>
       </>
     )
