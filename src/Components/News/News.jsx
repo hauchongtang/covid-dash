@@ -48,7 +48,7 @@ const News = () => {
           <Typography variant='body2'>{items.content}</Typography>
           <Typography variant='caption'>
             Source:&nbsp;
-            <Link href={items.url}>{items.url}</Link>
+            <Link href={items.url} target="_blank">{items.url}</Link>
           </Typography>
           <Typography variant='body2'>Published:&nbsp;{new Date(items.publishedAt).toLocaleString()}</Typography>
         </CardContent>

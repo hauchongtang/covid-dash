@@ -26,12 +26,12 @@ const About = () => {
       <TopBar />
       <CardContent elevation={1} className={styles.card}>
         <Typography align='inherit' variant='h5'>Mentions</Typography>
-        <Button href='https://api.covid19api.com'>covid19api</Button>
-        <Button href='https://covid19-api.org'>covid19-api</Button>
-        <Button href='https://covid19.mathdro.id'>covid19.mathdro.id</Button>
-        <Button href='https://api.coronatracker.com'>CoronaTrackerAPI</Button>
-        <Button href='https://api.apify.com'>Apify API</Button>
-        <Button href='https://disease.sh/'>
+        <Button href='https://api.covid19api.com' target="_blank">covid19api</Button>
+        <Button href='https://covid19-api.org' target="_blank">covid19-api</Button>
+        <Button href='https://covid19.mathdro.id' target="_blank">covid19.mathdro.id</Button>
+        <Button href='https://api.coronatracker.com' target="_blank">CoronaTrackerAPI</Button>
+        <Button href='https://api.apify.com' target="_blank">Apify API</Button>
+        <Button href='https://disease.sh/' target="_blank">
           disease.sh
         </Button>
       </CardContent>
@@ -41,16 +41,16 @@ const About = () => {
       </CardContent>
       <CardContent elevation={1} className={styles.card}>
         <Typography align='inherit' variant='h5'>Code and Contributors</Typography>
-        <Button size='large' href=' https://github.com/thchong-code/covid-dash' color='inherit'>
+        <Button size='large' href=' https://github.com/thchong-code/covid-dash' target="_blank" color='inherit'>
           Github
         </Button>
-        <Button size='large' href='https://github.com/imsamuel' color='inherit'>
+        <Button size='large' href='https://github.com/imsamuel' target="_blank" color='inherit'>
           imsamuel
         </Button>
       </CardContent>
       <CardContent elevation={1} className={styles.card}>
         <Typography align='inherit' variant='h5'>Find me !</Typography>
-        <Button size='large' href=' https://thchong-code.github.io/portfolio-webpage/#/' color='inherit'>
+        <Button size='large' href=' https://thchong-code.github.io/portfolio-webpage/#/' target="_blank" color='inherit'>
           HC
         </Button>
       </CardContent>

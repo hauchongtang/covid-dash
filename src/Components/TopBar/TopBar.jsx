@@ -67,7 +67,7 @@ const TopBar = () => {
       <Paper elevation={0} className={styles.root1}>
         <Typography variant='button'>
           For the latest travel advisories visit
-          <Button color='secondary' href='https://www.who.int/emergencies/diseases/novel-coronavirus-2019/travel-advice'>World Health Organisation</Button>
+          <Button color='secondary' href='https://www.who.int/emergencies/diseases/novel-coronavirus-2019/travel-advice' target="_blank">World Health Organisation</Button>
         </Typography>
       </Paper>
     </>
