@@ -97,7 +97,7 @@ const Tables = () => {
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
-                              <TableCell key={column.id}>{value}</TableCell>
+                              <TableCell key={column.id}>{value.toLocaleString()}</TableCell>
                             );
                           })}
                         </TableRow>
