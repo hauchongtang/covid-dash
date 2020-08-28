@@ -21,6 +21,8 @@ const useStyles = makeStyles({
 const TopBar = () => {
   const styles = useStyles();
 
+  const reloadPage = () => window.location.reload(false)
+
   return (
     <>
       <AppBar position='static' color='transparent' elevation={0} className={styles.root}>
@@ -59,6 +61,11 @@ const TopBar = () => {
             <Grid item>
               <Button size='large' href=' #/about' color='inherit' className={styles.current}>
                 About
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button size='large' onClick={() => reloadPage()} color='secondary' className={styles.current}>
+                <span role="img" aria-label="grinning face" id="rise trend">🔄</span>
               </Button>
             </Grid>
           </Grid >
