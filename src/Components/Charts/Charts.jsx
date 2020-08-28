@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Line, Doughnut } from 'react-chartjs-2';
-import { Typography, Card, Grid, LinearProgress, Paper, Button } from '@material-ui/core';
+import { Typography, Card, Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { fetchWorldDailyData } from '../../api-handler/index';
@@ -15,14 +15,14 @@ const useStyles = makeStyles({
   card: {
     padding: '2%',
     width: '50%',
-    marginTop: '1% !important',
+    marginTop: '0% !important',
     backgroundColor: 'rgb(92, 219, 149, 0.1)',
     borderRadius: '12px',
   },
   card1: {
     padding: '2%',
     width: '50%',
-    marginTop: '1% !important',
+    marginTop: '0% !important',
     backgroundColor: 'rgb(92, 219, 149, 0.1)',
     borderRadius: '12px',
   },
@@ -62,7 +62,7 @@ const Charts = ({ data }) => {
           labels: ['Infected', 'Recovered', 'Deaths', 'Active'],
           datasets: [{
             data: [totalInfected, totalRecovered, totalDeaths, totalActive],
-            backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+            backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)", "rgb(0, 225, 0, 0.5)"]
           }],
 
         }}
@@ -123,7 +123,7 @@ const Charts = ({ data }) => {
             }]
           }
         }} />)
-      : <LinearProgress />
+      : null
   )
 
   return (

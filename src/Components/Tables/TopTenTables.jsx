@@ -12,7 +12,7 @@ import {
   CardContent,
   Paper,
   LinearProgress,
-  Button,
+  Button
 } from "@material-ui/core";
 
 import TopBar from "../TopBar/TopBar";
@@ -29,17 +29,20 @@ const useStyles = makeStyles({
   card: {
     backgroundColor: 'rgb(92, 219, 149, 0.1)'
   },
+  more: {
+    alignItems: 'center'
+  }
 });
 
-const Tables = () => {
+const TopTenTables = () => {
   const styles = useStyles();
   const [tdyData, setTdyData] = useState([]);
 
   useEffect(() => {
     const fetchAPI = async () => {
       const fetchedAPI = await fetchWorldTdyYtd();
-      const { todayAll } = fetchedAPI;
-      setTdyData(todayAll);
+      const { today } = fetchedAPI;
+      setTdyData(today);
     };
     fetchAPI();
   }, []);
@@ -70,8 +73,8 @@ const Tables = () => {
       <Paper className={styles.root}>
         <Grid spacing={3} align="center">
           <Grid item>
-            <Button color='secondary' className={styles.more} href='#/summary'>Today</Button>
-            <Button color='secondary' className={styles.more} href='#/ytdsummary'>Yesterday</Button>
+            <Button color='secondary' className={styles.more} href='#/toptensummary'>Today</Button>
+            <Button color='secondary' className={styles.more} href='#/toptensummaryytd'>Yesterday</Button>
             <Button color='secondary' className={styles.more} href='#/'>Home</Button>
           </Grid>
           <Grid item component={Card} className={styles.card}>
@@ -92,7 +95,7 @@ const Tables = () => {
                           hover
                           role="checkbox"
                           tabIndex={-1}
-                          key={row.CountryCode}
+                          key={row.country}
                         >
                           {columns.map((column) => {
                             const value = row[column.id];
@@ -115,4 +118,4 @@ const Tables = () => {
   );
 };
 
-export default Tables;
+export default TopTenTables;

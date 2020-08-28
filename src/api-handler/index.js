@@ -109,3 +109,25 @@ export const fetchSGData = async () => {
     console.log(error);
   }
 }
+
+export const fetchWorldTdyYtd = async () => {
+  try {
+    const urlToday = 'https://disease.sh/v3/covid-19/countries?sort=todayCases';
+    const urlTodayUnsorted = 'https://disease.sh/v3/covid-19/countries';
+    const urlYtd = 'https://disease.sh/v3/covid-19/countries?yesterday=true&sort=todayCases';
+    const urlYtdUnsorted = 'https://disease.sh/v3/covid-19/countries?yesterday=true';
+    const todayResponse = await axios.get(urlToday);
+    const ytdResponse = await axios.get(urlYtd);
+    const todayRes = await axios.get(urlTodayUnsorted);
+    const ytdRes = await axios.get(urlYtdUnsorted);
+    const modifiedData = {
+      today: todayResponse.data.slice(0, 10),
+      todayAll: todayRes.data,
+      yesterday: ytdResponse.data.slice(0, 10),
+      yesterdayAll: ytdRes.data
+    }
+    return modifiedData;
+  } catch (error) {
+    console.log(error);
+  }
+}
