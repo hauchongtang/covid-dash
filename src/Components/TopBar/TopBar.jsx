@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Grid } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button, Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -8,6 +8,14 @@ const useStyles = makeStyles({
     padding: '0% !important',
     margin: '0% !important'
   },
+  root1: {
+    padding: '1%',
+    textAlign: 'justify',
+    marginTop: '0% !important',
+    // marginBottom: '1% !important',
+    // borderRadius: '12px',
+    backgroundColor: 'rgb(92, 219, 149, 0.2)'
+  }
 })
 
 const TopBar = () => {
@@ -24,8 +32,13 @@ const TopBar = () => {
             <Grid item>
               <Button href='#/' className={styles.button} color="inherit">
                 <Typography variant='h6'>
-                  𝗖𝗢𝗩𝗜𝗗🦠𝗧𝗥𝗔𝗖𝗞𝗘𝗥
+                  <span role="img" aria-label="grinning face" id="rise trend">𝗖𝗢𝗩𝗜𝗗🦠𝗧𝗥𝗔𝗖𝗞𝗘𝗥</span>
                 </Typography>
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button size='large' href=' #/' color='inherit' className={styles.current}>
+                Home
               </Button>
             </Grid>
             <Grid item>
@@ -51,6 +64,12 @@ const TopBar = () => {
           </Grid >
         </Toolbar >
       </AppBar >
+      <Paper elevation={0} className={styles.root1}>
+        <Typography variant='button'>
+          For the latest travel advisories visit
+          <Button color='secondary' href='https://www.who.int/emergencies/diseases/novel-coronavirus-2019/travel-advice'>World Health Organisation</Button>
+        </Typography>
+      </Paper>
     </>
   )
 }

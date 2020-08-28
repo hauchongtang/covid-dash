@@ -31,6 +31,9 @@ const About = () => {
         <Button href='https://covid19.mathdro.id'>covid19.mathdro.id</Button>
         <Button href='https://api.coronatracker.com'>CoronaTrackerAPI</Button>
         <Button href='https://api.apify.com'>Apify API</Button>
+        <Button href='https://disease.sh/'>
+          disease.sh
+        </Button>
       </CardContent>
       <CardContent elevation={1} className={styles.card}>
         <Typography align='inherit' variant='h5'>Content</Typography>

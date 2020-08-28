@@ -19,7 +19,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CountUp from 'react-countup';
 import cx from 'classnames';
 
-import { fetchTopDaily } from '../../api-handler/index';
+import { fetchWorldTdyYtd } from '../../api-handler/index';
 
 const useStyles = makeStyles({
   container: {
@@ -37,9 +37,17 @@ const useStyles = makeStyles({
     width: '76%',
     marginLeft: '10% !important',
     marginTop: '0% !important',
-    marginBottom: '0% !important',
+    marginBottom: '1% !important',
     borderRadius: '12px',
     backgroundColor: 'rgb(92, 219, 149, 0.1)'
+  },
+  root1: {
+    padding: '1%',
+    textAlign: 'justify',
+    marginTop: '0% !important',
+    // marginBottom: '1% !important',
+    // borderRadius: '12px',
+    backgroundColor: 'rgb(92, 219, 149, 0.2)'
   },
   infected: {
     borderBottom: '20px solid orange',
@@ -78,36 +86,74 @@ const Cards = ({ data, date }) => {
 
   const styles = useStyles();
 
-  const [topData, setTopData] = useState([]);
+  const [tdyData, setTdyData] = useState([]);
+  const [ytdData, setYtdData] = useState([]);
+
   const columns = [
     { id: "country", label: "Country" },
-    { id: "daily_cases", label: "Newly Confirmed" },
-    { id: "daily_deaths", label: "New Deaths" },
+    { id: "todayCases", label: "Newly Confirmed" },
+    { id: "todayDeaths", label: "New Deaths" },
   ];
 
   useEffect(() => {
     const fetchAPI = async () => {
-      const fetchedData = await fetchTopDaily();
-      setTopData(fetchedData);
+      const fetchedAPI = await fetchWorldTdyYtd();
+      const { today } = fetchedAPI;
+      const { yesterday } = fetchedAPI;
+      setTdyData(today);
+      setYtdData(yesterday);
     }
     fetchAPI();
   }, []);
 
   const topDailyBar = (
-    topData ? (
+    tdyData ? (
       <HorizontalBar
         data={{
-          labels: topData.map(items => items.country),
+          labels: tdyData.map(items => items.country),
           datasets: [
             {
               label: 'New Cases',
               backgroundColor: 'rgba(0,255,127, 0.5)',
-              data: topData.map(items => items.daily_cases),
+              data: tdyData.map(items => items.todayCases),
             },
             {
               label: 'Deaths',
               backgroundColor: 'rgba(0, 0, 225, 0.5)',
-              data: topData.map(items => items.daily_deaths),
+              data: tdyData.map(items => items.todayDeaths),
+            }
+          ],
+        }}
+        options={{
+          legend: { display: true },
+          scales: {
+            xAxes: [{
+              stacked: true,
+            }],
+            yAxes: [{
+              stacked: true
+            }]
+          }
+        }}
+      />
+    ) : <LinearProgress />
+  )
+
+  const topYtdBar = (
+    ytdData ? (
+      <HorizontalBar
+        data={{
+          labels: ytdData.map(items => items.country),
+          datasets: [
+            {
+              label: 'New Cases',
+              backgroundColor: 'rgb(128,0,128, 0.5)',
+              data: ytdData.map(items => items.todayCases),
+            },
+            {
+              label: 'Deaths',
+              backgroundColor: 'yellow',
+              data: ytdData.map(items => items.todayDeaths),
             }
           ],
         }}
@@ -166,7 +212,7 @@ const Cards = ({ data, date }) => {
         </Grid>
       </Grid>
       <Paper elevation={0} className={styles.root}>
-        <Typography variant='h5' color='textSecondary' gutterBottom style={{ textAlign: 'center' }}>Top 10 Daily Figures <span role="img" aria-label="grinning face" id="rise trend">📈</span> (Updated live)</Typography>
+        <Typography variant='h5' color='textSecondary' gutterBottom style={{ textAlign: 'center' }}>Top 10 Today <span role="img" aria-label="grinning face" id="rise trend">📈</span></Typography>
         <Grid container spacing={3} justify='center'>
           <Grid item>
             <TableContainer className={styles.tables}>
@@ -179,7 +225,7 @@ const Cards = ({ data, date }) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {topData.map((row) => {
+                  {tdyData.map((row) => {
                     return (
                       <TableRow
                         hover
@@ -205,11 +251,52 @@ const Cards = ({ data, date }) => {
               {topDailyBar}
             </Grid>
           </div>
+        </Grid>
+      </Paper>
+      <Paper elevation={0} className={styles.root}>
+        <Typography variant='h5' color='textSecondary' gutterBottom style={{ textAlign: 'center' }}>Top 10 Yesterday <span role="img" aria-label="grinning face" id="rise trend">📈</span></Typography>
+        <Grid container spacing={3} justify='center'>
           <Grid item>
-            <Typography variant='button' ><Button className={styles.more} href='#/summary'>For more details click here</Button></Typography>
+            <TableContainer className={styles.tables}>
+              <Table stickyHeader aria-label="sticky table">
+                <TableHead>
+                  <TableRow>
+                    {columns.map((column) => (
+                      <TableCell key={column.id}>{column.label}</TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {ytdData.map((row) => {
+                    return (
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={row.country}
+                      >
+                        {columns.map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell key={column.id}>{value}</TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
+          <div className={styles.container}>
+            <Grid item>
+              {topYtdBar}
+            </Grid>
+          </div>
+          <Grid item>
+            <Typography variant='button' ><Button color='secondary' className={styles.more} href='#/toptensummary'>Comparison Tables Click Here</Button></Typography>
           </Grid>
         </Grid>
-
       </Paper>
     </div >
   )

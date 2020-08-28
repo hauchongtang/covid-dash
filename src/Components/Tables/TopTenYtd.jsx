@@ -12,7 +12,7 @@ import {
   CardContent,
   Paper,
   LinearProgress,
-  Button,
+  Button
 } from "@material-ui/core";
 
 import TopBar from "../TopBar/TopBar";
@@ -31,15 +31,15 @@ const useStyles = makeStyles({
   },
 });
 
-const Tables = () => {
+const TopTenYtd = () => {
   const styles = useStyles();
-  const [tdyData, setTdyData] = useState([]);
+  const [ytdData, setYtdData] = useState([]);
 
   useEffect(() => {
     const fetchAPI = async () => {
       const fetchedAPI = await fetchWorldTdyYtd();
-      const { todayAll } = fetchedAPI;
-      setTdyData(todayAll);
+      const { yesterday } = fetchedAPI;
+      setYtdData(yesterday);
     };
     fetchAPI();
   }, []);
@@ -58,7 +58,7 @@ const Tables = () => {
     { id: "continent", label: "Continent" }
   ];
 
-  if (!tdyData.map(item => item.country)) {
+  if (!ytdData.map(item => item.country)) {
     return (
       <LinearProgress />
     )
@@ -70,8 +70,8 @@ const Tables = () => {
       <Paper className={styles.root}>
         <Grid spacing={3} align="center">
           <Grid item>
-            <Button color='secondary' className={styles.more} href='#/summary'>Today</Button>
-            <Button color='secondary' className={styles.more} href='#/ytdsummary'>Yesterday</Button>
+            <Button color='secondary' className={styles.more} href='#/toptensummary'>Today</Button>
+            <Button color='secondary' className={styles.more} href='#/toptensummaryytd'>Yesterday</Button>
             <Button color='secondary' className={styles.more} href='#/'>Home</Button>
           </Grid>
           <Grid item component={Card} className={styles.card}>
@@ -86,13 +86,13 @@ const Tables = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {tdyData.map((row) => {
+                    {ytdData.map((row) => {
                       return (
                         <TableRow
                           hover
                           role="checkbox"
                           tabIndex={-1}
-                          key={row.CountryCode}
+                          key={row.country}
                         >
                           {columns.map((column) => {
                             const value = row[column.id];
@@ -115,4 +115,4 @@ const Tables = () => {
   );
 };
 
-export default Tables;
+export default TopTenYtd;
