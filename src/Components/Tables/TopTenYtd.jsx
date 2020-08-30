@@ -1,12 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import AddBox from '@material-ui/icons/AddBox';
+import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import Check from '@material-ui/icons/Check';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import Clear from '@material-ui/icons/Clear';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import Edit from '@material-ui/icons/Edit';
+import FilterList from '@material-ui/icons/FilterList';
+import FirstPage from '@material-ui/icons/FirstPage';
+import LastPage from '@material-ui/icons/LastPage';
+import Remove from '@material-ui/icons/Remove';
+import SaveAlt from '@material-ui/icons/SaveAlt';
+import Search from '@material-ui/icons/Search';
+import ViewColumn from '@material-ui/icons/ViewColumn';
 import {
-  TableContainer,
-  Table,
-  TableBody,
-  TableHead,
-  TableRow,
-  TableCell,
   Grid,
   Card,
   CardContent,
@@ -14,6 +23,7 @@ import {
   LinearProgress,
   Button
 } from "@material-ui/core";
+import MaterialTable from 'material-table';
 
 import TopBar from "../TopBar/TopBar";
 import { fetchWorldTdyYtd } from "../../api-handler/index";
@@ -31,6 +41,26 @@ const useStyles = makeStyles({
   },
 });
 
+const tableIcons = {
+  Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+  Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
+  Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+  Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
+  DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+  Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
+  Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+  Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+  FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+  LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+  NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+  PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
+  ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+  Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+  SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
+  ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
+  ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
+};
+
 const TopTenYtd = () => {
   const styles = useStyles();
   const [ytdData, setYtdData] = useState([]);
@@ -45,17 +75,17 @@ const TopTenYtd = () => {
   }, []);
 
   const columns = [
-    { id: "country", label: "Country" },
-    { id: "cases", label: "Total Cases" },
-    { id: "todayCases", label: "New Cases" },
-    { id: "deaths", label: "Total Deaths" },
-    { id: "recovered", label: "Total Recovered" },
-    { id: "todayRecovered", label: "New Recovered" },
-    { id: "active", label: "Active" },
-    { id: "casesPerOneMillion", label: "Cases per million" },
-    { id: "deathsPerOneMillion", label: "Deaths per million" },
-    { id: "population", label: "Total Population" },
-    { id: "continent", label: "Continent" }
+    { field: "country", title: "Country" },
+    { field: "cases", title: "Total Cases" },
+    { field: "todayCases", title: "New Cases" },
+    { field: "deaths", title: "Total Deaths" },
+    { field: "recovered", title: "Total Recovered" },
+    { field: "todayRecovered", title: "New Recovered" },
+    { field: "active", title: "Active" },
+    { field: "casesPerOneMillion", title: "Cases per million" },
+    { field: "deathsPerOneMillion", title: "Deaths per million" },
+    { field: "population", title: "Total Population" },
+    { field: "continent", title: "Continent" }
   ];
 
   if (!ytdData.map(item => item.country)) {
@@ -63,6 +93,25 @@ const TopTenYtd = () => {
       <LinearProgress />
     )
   }
+
+  var dataSet = ytdData;
+  const mapData = (dataSet) => {
+    dataSet.map(item => {
+      item.country = item.country.toLocaleString()
+      item.cases = item.cases.toLocaleString()
+      item.todayCases = item.todayCases.toLocaleString()
+      item.deaths = item.deaths.toLocaleString()
+      item.recovered = item.recovered.toLocaleString()
+      item.todayRecovered = item.todayRecovered.toLocaleString()
+      item.active = item.active.toLocaleString()
+      item.casesPerOneMillion = item.casesPerOneMillion.toLocaleString()
+      item.deathsPerOneMillion = item.deathsPerOneMillion.toLocaleString()
+      item.population = item.population.toLocaleString()
+      item.continent = item.continent.toLocaleString()
+      return item;
+    })
+  }
+  mapData(dataSet);
 
   return (
     <>
@@ -76,37 +125,15 @@ const TopTenYtd = () => {
           </Grid>
           <Grid item component={Card} className={styles.card}>
             <CardContent>
-              <TableContainer className={styles.container}>
-                <Table stickyHeader aria-label="sticky table">
-                  <TableHead className={styles.head}>
-                    <TableRow>
-                      {columns.map((column) => (
-                        <TableCell key={column.id}>{column.label}</TableCell>
-                      ))}
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {ytdData.map((row) => {
-                      return (
-                        <TableRow
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={row.country}
-                        >
-                          {columns.map((column) => {
-                            const value = row[column.id];
-                            return (
-                              <TableCell key={column.id}>{value.toLocaleString()}</TableCell>
-                            );
-                          })}
-                        </TableRow>
-                      );
-                    })}
-                  </TableBody>
-                  <caption>Courtesy of https://disease.sh/</caption>
-                </Table>
-              </TableContainer>
+              <MaterialTable
+                icons={tableIcons}
+                columns={columns}
+                title={window.location.hash === "#/toptensummary" ? "Today's Summary" : "Yesterday's Summary"}
+                data={dataSet}
+                options={{
+                  sorting: true,
+                }}
+              />
             </CardContent>
           </Grid>
         </Grid>
