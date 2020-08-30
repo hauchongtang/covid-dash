@@ -132,9 +132,6 @@ const Tables = () => {
                 data={dataSet}
                 options={{
                   sorting: true,
-                  rowStyle: {
-                    backgroundColor: '#EEE',
-                  }
                 }}
               />
             </CardContent>

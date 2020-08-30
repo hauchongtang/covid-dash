@@ -135,9 +135,6 @@ const TopTenTables = () => {
                 data={dataSet}
                 options={{
                   sorting: true,
-                  rowStyle: {
-                    backgroundColor: '#EEE',
-                  }
                 }}
               />
             </CardContent>
