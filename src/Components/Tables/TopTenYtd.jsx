@@ -95,23 +95,23 @@ const TopTenYtd = () => {
   }
 
   var dataSet = ytdData;
-  const mapData = (dataSet) => {
-    dataSet.map(item => {
-      item.country = item.country.toLocaleString()
-      item.cases = item.cases.toLocaleString()
-      item.todayCases = item.todayCases.toLocaleString()
-      item.deaths = item.deaths.toLocaleString()
-      item.recovered = item.recovered.toLocaleString()
-      item.todayRecovered = item.todayRecovered.toLocaleString()
-      item.active = item.active.toLocaleString()
-      item.casesPerOneMillion = item.casesPerOneMillion.toLocaleString()
-      item.deathsPerOneMillion = item.deathsPerOneMillion.toLocaleString()
-      item.population = item.population.toLocaleString()
-      item.continent = item.continent.toLocaleString()
-      return item;
-    })
-  }
-  mapData(dataSet);
+  // const mapData = (dataSet) => {
+  //   dataSet.map(item => {
+  //     item.country = item.country.toLocaleString()
+  //     item.cases = item.cases.toLocaleString()
+  //     item.todayCases = item.todayCases.toLocaleString()
+  //     item.deaths = item.deaths.toLocaleString()
+  //     item.recovered = item.recovered.toLocaleString()
+  //     item.todayRecovered = item.todayRecovered.toLocaleString()
+  //     item.active = item.active.toLocaleString()
+  //     item.casesPerOneMillion = item.casesPerOneMillion.toLocaleString()
+  //     item.deathsPerOneMillion = item.deathsPerOneMillion.toLocaleString()
+  //     item.population = item.population.toLocaleString()
+  //     item.continent = item.continent.toLocaleString()
+  //     return item;
+  //   })
+  // }
+  // mapData(dataSet);
 
   return (
     <>

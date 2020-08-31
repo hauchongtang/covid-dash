@@ -15,6 +15,11 @@ const useStyles = makeStyles({
     // marginBottom: '1% !important',
     // borderRadius: '12px',
     backgroundColor: 'rgb(92, 219, 149, 0.2)'
+  },
+  title: {
+    flexGrow: 1,
+    textAlign: 'start',
+    paddingLeft: 'inherit'
   }
 })
 
@@ -27,48 +32,34 @@ const TopBar = () => {
     <>
       <AppBar position='static' color='transparent' elevation={0} className={styles.root}>
         <Toolbar>
-          <Grid
-            justify='space-evenly'
-            container
-            spacing={3}>
-            <Grid item>
-              <Button href='#/' className={styles.button} color="inherit">
-                <Typography variant='h6'>
-                  <span role="img" aria-label="grinning face" id="rise trend">𝗖𝗢𝗩𝗜𝗗🦠𝗧𝗥𝗔𝗖𝗞𝗘𝗥</span>
-                </Typography>
+          <Typography variant='h6' className={styles.title}>
+            <span role="img" aria-label="grinning face" id="rise trend">𝗖𝗢𝗩𝗜𝗗🦠𝗧𝗥𝗔𝗖𝗞𝗘𝗥</span>
+          </Typography>
+
+          <Button size='large' href=' #/' color='secondary' className={styles.current}>
+            Home
               </Button>
-            </Grid>
-            <Grid item>
-              <Button size='large' href=' #/' color='inherit' className={styles.current}>
-                Home
+
+          <Button size='large' href=' #/singapore' color='secondary' className={styles.current}>
+            Singapore
               </Button>
-            </Grid>
-            <Grid item>
-              <Button size='large' href=' #/singapore' color='inherit' className={styles.current}>
-                Singapore
+
+          <Button size='large' href=' #/summary' color='secondary' className={styles.current}>
+            Summary
               </Button>
-            </Grid>
-            <Grid item>
-              <Button size='large' href=' #/summary' color='inherit' className={styles.current}>
-                Summary
+
+          <Button size='large' href=' #/news' color='secondary' className={styles.current}>
+            News
               </Button>
-            </Grid>
-            <Grid item>
-              <Button size='large' href=' #/news' color='inherit' className={styles.current}>
-                News
+
+          <Button size='large' href=' #/about' color='secondary' className={styles.current}>
+            About
               </Button>
-            </Grid>
-            <Grid item>
-              <Button size='large' href=' #/about' color='inherit' className={styles.current}>
-                About
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button size='large' onClick={() => reloadPage()} color='secondary' className={styles.current}>
-                <span role="img" aria-label="grinning face" id="rise trend">🔄</span>
-              </Button>
-            </Grid>
-          </Grid >
+
+          <Button size='large' onClick={() => reloadPage()} color='secondary' className={styles.current}>
+            <span role="img" aria-label="grinning face" id="rise trend">🔄</span>
+          </Button>
+
         </Toolbar >
       </AppBar >
       <Paper elevation={0} className={styles.root1}>
