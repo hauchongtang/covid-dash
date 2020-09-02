@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Card, CardContent, Typography, Link, LinearProgress } from '@material-ui/core';
+import { Grid, CardContent, Typography, Link, LinearProgress } from '@material-ui/core';
 import { countries } from 'country-data';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -9,14 +9,16 @@ import { fetchTopNews } from '../../api-handler/index';
 const useStyles = makeStyles({
   container: {
     textAlign: 'justify',
+    boxShadow: 'none !important',
+    width: '100% !important',
+    marginLeft: '10%'
   },
   card: {
     margin: '2% !important',
-    backgroundColor: 'rgb(64,224,208, 0.1)',
-    borderRadius: '12px',
-    borderTop: '12px solid rgb(64,224,208)',
-    width: '80%',
-    textAlign: 'justify'
+    borderColor: 'transparent',
+    textAlign: 'justify',
+    // width: '80%',
+    // marginLeft: '10% !important',
   },
 })
 
@@ -41,7 +43,7 @@ const News = () => {
 
   const mapNews = data.map((items, index) => {
     return (
-      <div>
+      <>
         <CardContent className={styles.card}>
           <Typography variant='h6' color='textPrimary' gutterBotton>{countries[items.countryCode].name}</Typography>
           <Typography variant='h6' color='primary' gutterBottom>{items.title}</Typography>
@@ -52,15 +54,15 @@ const News = () => {
           </Typography>
           <Typography variant='body2'>Published:&nbsp;{new Date(items.publishedAt).toLocaleString()}</Typography>
         </CardContent>
-      </div>
+      </>
     )
   })
 
   return (
     <>
       <TopBar />
-      <Grid container spacing={0} align='center'>
-        <Grid item component={Card}>
+      <Grid elevation={0} container spacing={0}>
+        <Grid item>
           {mapNews}
         </Grid>
       </Grid>
