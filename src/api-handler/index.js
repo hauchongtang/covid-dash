@@ -131,3 +131,13 @@ export const fetchWorldTdyYtd = async () => {
     console.log(error);
   }
 }
+
+export const fetchLocationData = async () => {
+  try {
+    const url = 'https://corona.lmao.ninja/v2/countries?sort=cases';
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}

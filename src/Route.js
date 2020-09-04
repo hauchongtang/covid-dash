@@ -9,6 +9,7 @@ import App from './App';
 import TopTenTables from './Components/Tables/TopTenTables';
 import TablesYtd from './Components/Tables/TablesYtd';
 import TopTenYtd from './Components/Tables/TopTenYtd';
+import Globe from './Components/Globe/Globe';
 
 const Routes = () => {
   return (
@@ -19,6 +20,7 @@ const Routes = () => {
       <Route path='/toptensummary' component={TopTenTables} />
       <Route path='/toptensummaryytd' component={TopTenYtd} />
       <Route path='/singapore' component={Singapore} />
+      <Route path='/globe' component={Globe} />
       <Route path='/news' component={News} />
       <Route path='/about' component={About} />
     </Switch>
