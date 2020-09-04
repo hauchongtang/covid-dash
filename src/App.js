@@ -18,20 +18,19 @@ class App extends React.Component {
 
   async componentDidMount() {
     const fetchedData = await fetchData();
-    this.setState({ data: fetchedData.Global });
-    this.setState({ date: fetchedData.Date });
+    console.log(fetchedData)
+    this.setState({ data: fetchedData });
   }
 
   render() {
 
     const { data } = this.state;
-    const { date } = this.state;
 
     return (
       <>
         <div className='container'>
           <TopBar />
-          <Cards data={data} date={date} />
+          <Cards data={data} />
           <Charts data={data} />
         </div>
       </>

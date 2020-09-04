@@ -78,11 +78,11 @@ const useStyles = makeStyles({
   }
 });
 
-const Cards = ({ data, date }) => {
-  const totalInfected = parseInt(data.TotalConfirmed);
-  const totalRecovered = parseInt(data.TotalRecovered);
-  const totalDeaths = parseInt(data.TotalDeaths);
-  const totalActive = totalInfected - totalDeaths - totalRecovered;
+const Cards = ({ data }) => {
+  const totalInfected = parseInt(data.totalConfirmed);
+  const totalRecovered = parseInt(data.totalRecovered);
+  const totalDeaths = parseInt(data.totalDeaths);
+  const totalActive = parseInt(data.totalActiveCases);
 
   const styles = useStyles();
 

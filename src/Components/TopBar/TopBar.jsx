@@ -40,9 +40,9 @@ const TopBar = () => {
           <Button size='large' href=' #/globe' color='secondary' className={styles.current}>
             Globe
               </Button>
-          <Button size='large' href=' #/singapore' color='secondary' className={styles.current}>
+          {/* <Button size='large' href=' #/singapore' color='secondary' className={styles.current}>
             Singapore
-            </Button>
+            </Button> */}
           <Button size='large' href=' #/summary' color='secondary' className={styles.current}>
             Summary
               </Button>
