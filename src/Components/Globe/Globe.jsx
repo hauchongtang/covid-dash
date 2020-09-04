@@ -73,11 +73,11 @@ const Globe = () => {
           >
             <div>
               <h2>{location.country}</h2>
-              <p>Cases:&nbsp;{location.cases}</p>
-              <p>Deaths:&nbsp;{location.deaths}</p>
-              <p>Active:&nbsp;{location.active}</p>
-              <p>Recovered:&nbsp;{location.recovered}</p>
-              <p>Critical:&nbsp;{location.critical}</p>
+              <p>Cases:&nbsp;{location.cases.toLocaleString()}</p>
+              <p>Deaths:&nbsp;{location.deaths.toLocaleString()}</p>
+              <p>Active:&nbsp;{location.active.toLocaleString()}</p>
+              <p>Recovered:&nbsp;{location.recovered.toLocaleString()}</p>
+              <p>Critical:&nbsp;{location.critical.toLocaleString()}</p>
             </div>
           </Popup>
         )}
