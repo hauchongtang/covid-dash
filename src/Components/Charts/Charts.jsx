@@ -40,10 +40,10 @@ const useStyles = makeStyles({
 const Charts = ({ data }) => {
   const [worldDailyData, setWorldData] = useState([]);
 
-  const totalInfected = (data.TotalConfirmed);
-  const totalRecovered = data.TotalRecovered;
-  const totalDeaths = data.TotalDeaths;
-  const totalActive = totalInfected - totalDeaths - totalRecovered;
+  const totalInfected = parseInt(data.totalConfirmed);
+  const totalRecovered = parseInt(data.totalRecovered);
+  const totalDeaths = parseInt(data.totalDeaths);
+  const totalActive = parseInt(data.totalActiveCases);
   const total = totalInfected + totalDeaths + totalRecovered;
   const styles = useStyles();
 
