@@ -20,7 +20,7 @@ const Globe = () => {
   return (
     <>
       <TopBar />
-      <Map center={[0, 0]} zoom={2.5}>
+      <Map center={[8, 0]} zoom={2.3}>
         <TileLayer
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
