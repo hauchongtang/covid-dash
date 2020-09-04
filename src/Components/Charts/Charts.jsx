@@ -45,7 +45,6 @@ const Charts = ({ data }) => {
   const totalDeaths = data.TotalDeaths;
   const totalActive = totalInfected - totalDeaths - totalRecovered;
   const total = totalInfected + totalDeaths + totalRecovered;
-  console.log(totalInfected)
   const styles = useStyles();
 
   useEffect(() => {

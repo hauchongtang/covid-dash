@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Grid, Paper } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -12,8 +12,6 @@ const useStyles = makeStyles({
     padding: '1%',
     textAlign: 'justify',
     marginTop: '0% !important',
-    // marginBottom: '1% !important',
-    // borderRadius: '12px',
     backgroundColor: 'rgb(92, 219, 149, 0.2)'
   },
   title: {
@@ -39,11 +37,12 @@ const TopBar = () => {
           <Button size='large' href=' #/' color='secondary' className={styles.current}>
             Home
               </Button>
-
+          <Button size='large' href=' #/globe' color='secondary' className={styles.current}>
+            Globe
+              </Button>
           <Button size='large' href=' #/singapore' color='secondary' className={styles.current}>
             Singapore
-              </Button>
-
+            </Button>
           <Button size='large' href=' #/summary' color='secondary' className={styles.current}>
             Summary
               </Button>
