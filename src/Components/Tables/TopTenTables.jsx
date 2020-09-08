@@ -79,15 +79,15 @@ const TopTenTables = () => {
 
   const columns = [
     { field: "country", title: "Country" },
-    { field: "cases", title: "Total Cases" },
-    { field: "todayCases", title: "New Cases" },
-    { field: "deaths", title: "Total Deaths" },
-    { field: "recovered", title: "Total Recovered" },
-    { field: "todayRecovered", title: "New Recovered" },
-    { field: "active", title: "Active" },
-    { field: "casesPerOneMillion", title: "Cases per million" },
-    { field: "deathsPerOneMillion", title: "Deaths per million" },
-    { field: "population", title: "Total Population" },
+    { field: "cases", title: "Total Cases", customSort: (a, b) => parseInt(a.cases.replace(/,/g, "")) - parseInt(b.cases.replace(/,/g, "")) },
+    { field: "todayCases", title: "New Cases", customSort: (a, b) => parseInt(a.todayCases.replace(/,/g, "")) - parseInt(b.todayCases.replace(/,/g, "")) },
+    { field: "deaths", title: "Total Deaths", customSort: (a, b) => parseInt(a.deaths.replace(/,/g, "")) - parseInt(b.deaths.replace(/,/g, "")) },
+    { field: "recovered", title: "Total Recovered", customSort: (a, b) => parseInt(a.recovered.replace(/,/g, "")) - parseInt(b.recovered.replace(/,/g, "")) },
+    { field: "todayRecovered", title: "New Recovered", customSort: (a, b) => parseInt(a.todayRecovered.replace(/,/g, "")) - parseInt(b.todayRecovered.replace(/,/g, "")) },
+    { field: "active", title: "Active", customSort: (a, b) => parseInt(a.active.replace(/,/g, "")) - parseInt(b.active.replace(/,/g, "")) },
+    { field: "casesPerOneMillion", title: "Cases per million", customSort: (a, b) => parseInt(a.casesPerOneMillion.replace(/,/g, "")) - parseInt(b.casesPerOneMillion.replace(/,/g, "")) },
+    { field: "deathsPerOneMillion", title: "Deaths per million", customSort: (a, b) => parseInt(a.deathsPerOneMillion.replace(/,/g, "")) - parseInt(b.deathsPerOneMillion.replace(/,/g, "")) },
+    { field: "population", title: "Total Population", customSort: (a, b) => parseInt(a.population.replace(/,/g, "")) - parseInt(b.population.replace(/,/g, "")) },
     { field: "continent", title: "Continent" }
   ];
 
@@ -98,23 +98,23 @@ const TopTenTables = () => {
   }
 
   var dataSet = tdyData;
-  // const mapData = (dataSet) => {
-  //   dataSet.map(item => {
-  //     item.country = item.country.toLocaleString()
-  //     item.cases = item.cases.toLocaleString()
-  //     item.todayCases = item.todayCases.toLocaleString()
-  //     item.deaths = item.deaths.toLocaleString()
-  //     item.recovered = item.recovered.toLocaleString()
-  //     item.todayRecovered = item.todayRecovered.toLocaleString()
-  //     item.active = item.active.toLocaleString()
-  //     item.casesPerOneMillion = item.casesPerOneMillion.toLocaleString()
-  //     item.deathsPerOneMillion = item.deathsPerOneMillion.toLocaleString()
-  //     item.population = item.population.toLocaleString()
-  //     item.continent = item.continent.toLocaleString()
-  //     return item;
-  //   })
-  // }
-  // mapData(dataSet);
+  const mapData = (dataSet) => {
+    dataSet.map(item => {
+      item.country = item.country.toLocaleString()
+      item.cases = item.cases.toLocaleString()
+      item.todayCases = item.todayCases.toLocaleString()
+      item.deaths = item.deaths.toLocaleString()
+      item.recovered = item.recovered.toLocaleString()
+      item.todayRecovered = item.todayRecovered.toLocaleString()
+      item.active = item.active.toLocaleString()
+      item.casesPerOneMillion = item.casesPerOneMillion.toLocaleString()
+      item.deathsPerOneMillion = item.deathsPerOneMillion.toLocaleString()
+      item.population = item.population.toLocaleString()
+      item.continent = item.continent.toLocaleString()
+      return item;
+    })
+  }
+  mapData(dataSet);
 
   return (
     <>
