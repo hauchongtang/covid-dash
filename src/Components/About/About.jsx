@@ -37,7 +37,7 @@ const About = () => {
       </CardContent>
       <CardContent elevation={1} className={styles.card}>
         <Typography align='inherit' variant='h5'>Code and Contributors</Typography>
-        <Button size='large' href=' https://github.com/thchong-code/covid-dash' target="_blank" color='secondary'>
+        <Button size='large' href=' https://github.com/hauchongtang/covid-dash' target="_blank" color='secondary'>
           Github
         </Button>
         <Button size='large' href='https://github.com/imsamuel' target="_blank" color='secondary'>
@@ -46,7 +46,7 @@ const About = () => {
       </CardContent>
       <CardContent elevation={1} className={styles.card}>
         <Typography align='inherit' variant='h5'>Find me @</Typography>
-        <Button size='large' href=' https://thchong-code.github.io/portfolio-webpage/#/' target="_blank" color='secondary'>
+        <Button size='large' href=' https://hauchongtang.github.io/' target="_blank" color='secondary'>
           HC
         </Button>
       </CardContent>
