@@ -23,6 +23,8 @@
     "react-leaflet": "^2.7.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-swipeable-views": "^0.13.9",
+    "react-swipeable-views-utils": "^0.13.9",
     "use-count-up": "^2.2.4"
   },
   "scripts": {
