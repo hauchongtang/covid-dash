@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Paper } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button, Paper, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -31,10 +31,10 @@ const TopBar = () => {
       <AppBar position='static' color='transparent' elevation={0} className={styles.root}>
         <Toolbar>
           <Typography variant='h6' className={styles.title}>
-            <span role="img" aria-label="grinning face" id="rise trend">𝗖𝗢𝗩𝗜𝗗🦠𝗧𝗥𝗔𝗖𝗞𝗘𝗥</span>
+            <Link href='#/'><span role="img" aria-label="grinning face" id="rise trend">𝗖𝗢𝗩𝗜𝗗🦠𝗧𝗥𝗔𝗖𝗞𝗘𝗥</span></Link>
           </Typography>
 
-          <Button size='large' href=' #/' color='secondary' className={styles.current}>
+          <Button size='large' href=' #/home' color='secondary' className={styles.current}>
             Home
               </Button>
           <Button size='large' href=' #/globe' color='secondary' className={styles.current}>

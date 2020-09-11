@@ -10,11 +10,13 @@ import TopTenTables from './Components/Tables/TopTenTables';
 import TablesYtd from './Components/Tables/TablesYtd';
 import TopTenYtd from './Components/Tables/TopTenYtd';
 import Globe from './Components/Globe/Globe';
+import Landing from './Components/LandingPage/LandingPage';
 
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path='/' component={App} />
+      <Route exact path='/' component={Landing} />
+      <Route path='/home' component={App} />
       <Route path='/summary' component={Tables} />
       <Route path='/ytdsummary' component={TablesYtd} />
       <Route path='/toptensummary' component={TopTenTables} />

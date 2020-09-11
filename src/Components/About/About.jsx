@@ -46,8 +46,10 @@ const About = () => {
       </CardContent>
       <CardContent elevation={1} className={styles.card}>
         <Typography align='inherit' variant='h5'>Find me @</Typography>
-        <Button size='large' href=' https://hauchongtang.github.io/' target="_blank" color='secondary'>
-          HC
+        <Button size='large' href=' https://hauchongtang.github.io/portfolio-webpage/#/' target="_blank" color='secondary'>
+          <Button size='large' href=' https://hauchongtang.github.io/' target="_blank" color='secondary'>
+            HC
+        </Button>
         </Button>
       </CardContent>
     </>
