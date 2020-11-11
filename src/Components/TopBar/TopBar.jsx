@@ -47,10 +47,6 @@ const TopBar = () => {
             Summary
               </Button>
 
-          <Button size='large' href=' #/news' color='secondary' className={styles.current}>
-            News
-              </Button>
-
           <Button size='large' href=' #/about' color='secondary' className={styles.current}>
             About
               </Button>
