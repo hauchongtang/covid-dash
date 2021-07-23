@@ -29,9 +29,9 @@ export const fetchDailyData = async (country) => {
 
 export const fetchWorldDailyData = async () => {
   try {
-    const url = 'https://covid19-api.org/api/timeline';
+    const url = 'https://corona.lmao.ninja/v2/historical/all';
     const response = await axios.get(url);
-    return response.data.reverse();
+    return response.data;
   } catch (error) {
     console.log(error);
   }

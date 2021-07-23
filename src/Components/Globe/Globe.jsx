@@ -16,7 +16,6 @@ const Globe = () => {
     }
     fetchAPI();
   }, []);
-  console.log(locData);
   return (
     <>
       <TopBar />
@@ -82,6 +81,7 @@ const Globe = () => {
           </Popup>
         )}
       </Map>
+      <h3>Click to find out more</h3>
     </>
   )
 };
